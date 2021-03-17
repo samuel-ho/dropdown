@@ -45,11 +45,25 @@ function App() {
     );
   };
 
-  const createCheckboxes = () => {
-    return dropdownOptions.map((option) => createCheckbox(option));
+  const createCheckboxes = () =>
+    dropdownOptions.map((option) => createCheckbox(option));
+
+  const selectAllCheckboxes = (isChecked) => {
+    for (let option in checkboxes) {
+      setCheckboxes((prevCheckboxes) => ({
+        ...prevCheckboxes,
+        [option]: isChecked,
+      }));
+    }
+
+    setSelectedOptions(dropdownOptions);
   };
 
-  console.log(selectedOptions, "selectedOptions");
+  const deSelectAllCheckboxes = () => {
+    selectAllCheckboxes(false);
+    setSelectedOptions([]);
+  };
+
   return (
     <div className="App">
       <Dropdown
@@ -57,6 +71,8 @@ function App() {
         setIsDropdownExpanded={setIsDropdownExpanded}
         createCheckboxes={createCheckboxes}
         selectedOptions={selectedOptions}
+        selectAllCheckboxes={selectAllCheckboxes}
+        deSelectAllCheckboxes={deSelectAllCheckboxes}
       />
     </div>
   );
