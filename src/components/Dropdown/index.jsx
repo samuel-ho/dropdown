@@ -13,27 +13,27 @@ export default function Dropdown(props) {
     isDropdownExpanded,
     setIsDropdownExpanded,
     createCheckboxes,
-    selectedOptions,
+    selectedCheckboxes,
     selectAllCheckboxes,
     deSelectAllCheckboxes
   } = props;
 
   return (
-    <form>
+    <form className="form">
       <div className="multiselect">
         <div
           className="selectBox"
           onClick={() => setIsDropdownExpanded(!isDropdownExpanded)}
         >
-          <div> Selected Options: {selectedOptions}</div>
-          <select>{selectedOptions}</select>
+          <div> Selected Options: {selectedCheckboxes}</div>
+          <select>{selectedCheckboxes}</select>
           <div className="overSelect"></div>
         </div>
         <Checkboxes isExpanded={props.isDropdownExpanded}>
           {createCheckboxes()}
+        </Checkboxes>
         <Button onClick={() => selectAllCheckboxes(true)}> Select All </Button>
         <Button onClick={() => deSelectAllCheckboxes(false)}> Deselect All </Button>
-        </Checkboxes>
       </div>
     </form>
   );
