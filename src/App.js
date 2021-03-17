@@ -3,15 +3,15 @@ import React, { useState } from "react";
 import Dropdown from "./components/Dropdown";
 import Checkbox from "./components/Checkbox";
 import { dropdownOptions } from "./constants";
-import { createOptionsObj } from "./utils";
+import { createInitialState } from "./utils";
 import "./App.css";
 
 function App() {
-  const initialCheckboxes = createOptionsObj(dropdownOptions);
+  const initialCheckboxes = createInitialState(dropdownOptions);
 
   const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
   const [checkboxes, setCheckboxes] = useState(initialCheckboxes);
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
   const handleCheckboxClick = (e) => {
     const { name } = e.target;
@@ -20,17 +20,17 @@ function App() {
       [name]: !prevCheckboxes[name],
     }));
 
-    const isOptionDisplayed = selectedOptions.includes(name);
-    if (!isOptionDisplayed) {
-      setSelectedOptions((prevSelectedOptions) => [
-        ...prevSelectedOptions,
+    const isCheckboxDisplayed = selectedCheckboxes.includes(name);
+    if (!isCheckboxDisplayed) {
+      setSelectedCheckboxes((prevSelectedCheckboxes) => [
+        ...prevSelectedCheckboxes,
         name,
       ]);
     } else {
-      const index = selectedOptions.indexOf(name);
-      let newSelectedOptions = [...selectedOptions];
-      newSelectedOptions.splice(index, 1);
-      setSelectedOptions(newSelectedOptions);
+      const index = selectedCheckboxes.indexOf(name);
+      let newSelectedCheckboxes = [...selectedCheckboxes];
+      newSelectedCheckboxes.splice(index, 1);
+      setSelectedCheckboxes(newSelectedCheckboxes);
     }
   };
 
@@ -56,12 +56,12 @@ function App() {
       }));
     }
 
-    setSelectedOptions(dropdownOptions);
+    setSelectedCheckboxes(dropdownOptions);
   };
 
   const deSelectAllCheckboxes = () => {
     selectAllCheckboxes(false);
-    setSelectedOptions([]);
+    setSelectedCheckboxes([]);
   };
 
   return (
@@ -70,7 +70,7 @@ function App() {
         isDropdownExpanded={isDropdownExpanded}
         setIsDropdownExpanded={setIsDropdownExpanded}
         createCheckboxes={createCheckboxes}
-        selectedOptions={selectedOptions}
+        selectedCheckboxes={selectedCheckboxes}
         selectAllCheckboxes={selectAllCheckboxes}
         deSelectAllCheckboxes={deSelectAllCheckboxes}
       />
