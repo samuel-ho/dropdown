@@ -1,1 +1,1 @@
-export const dropdownOptions = ["One", "Two", "Three"]
+export const dropdownOptions = ["one", "two", "three"];

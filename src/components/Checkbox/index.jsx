@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
 const Label = styled.label`
@@ -6,16 +6,15 @@ const Label = styled.label`
 `;
 
 export default function Checkbox({ label, handleCheckboxClick, isChecked }) {
-    
-    return (
-        <Label>
-            <input
-                type="checkbox"
-                name={label}
-                onChange={handleCheckboxClick}
-                checked={isChecked}
-            />
-        </Label>
-    )
+  return (
+    <Label htmlFor={label}>
+      <input
+        type="checkbox"
+        name={label}
+        onChange={handleCheckboxClick}
+        checked={isChecked}
+      />{" "}
+      {label}
+    </Label>
+  );
 }
-
