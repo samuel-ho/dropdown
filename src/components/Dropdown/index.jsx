@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import Button from '../Button';
 import "./Dropdown.css";
 
 const Checkboxes = styled.div`
@@ -13,6 +14,8 @@ export default function Dropdown(props) {
     setIsDropdownExpanded,
     createCheckboxes,
     selectedOptions,
+    selectAllCheckboxes,
+    deSelectAllCheckboxes
   } = props;
 
   return (
@@ -28,6 +31,8 @@ export default function Dropdown(props) {
         </div>
         <Checkboxes isExpanded={props.isDropdownExpanded}>
           {createCheckboxes()}
+        <Button onClick={() => selectAllCheckboxes(true)}> Select All </Button>
+        <Button onClick={() => deSelectAllCheckboxes(false)}> Deselect All </Button>
         </Checkboxes>
       </div>
     </form>
