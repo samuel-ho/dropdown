@@ -13,14 +13,9 @@ function App() {
   const [checkboxes, setCheckboxes] = useState(initialCheckboxes);
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
-  const handleCheckboxClick = (e) => {
-    const { name } = e.target;
-    setCheckboxes((prevCheckboxes) => ({
-      ...prevCheckboxes,
-      [name]: !prevCheckboxes[name],
-    }));
-
+  const updateSelectedCheckboxes = (name) => {
     const isCheckboxDisplayed = selectedCheckboxes.includes(name);
+
     if (!isCheckboxDisplayed) {
       setSelectedCheckboxes((prevSelectedCheckboxes) => [
         ...prevSelectedCheckboxes,
@@ -32,6 +27,16 @@ function App() {
       newSelectedCheckboxes.splice(index, 1);
       setSelectedCheckboxes(newSelectedCheckboxes);
     }
+  };
+
+  const handleCheckboxClick = (e) => {
+    const { name } = e.target;
+    setCheckboxes((prevCheckboxes) => ({
+      ...prevCheckboxes,
+      [name]: !prevCheckboxes[name],
+    }));
+
+    updateSelectedCheckboxes(name);
   };
 
   const createCheckbox = (option) => {
