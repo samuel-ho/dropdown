@@ -8,16 +8,22 @@ const Checkboxes = styled.div`
 `;
 
 export default function Dropdown(props) {
-  const { isDropdownExpanded, setIsDropdownExpanded, createCheckboxes, selectedOptions } = props;
+  const {
+    isDropdownExpanded,
+    setIsDropdownExpanded,
+    createCheckboxes,
+    selectedOptions,
+  } = props;
 
   return (
     <form>
       <div className="multiselect">
-        <div className="selectBox" onClick={() => setIsDropdownExpanded(!isDropdownExpanded)}>
-        <div> Selected Options: {selectedOptions}</div>
-          <select>
-          {selectedOptions}
-          </select>
+        <div
+          className="selectBox"
+          onClick={() => setIsDropdownExpanded(!isDropdownExpanded)}
+        >
+          <div> Selected Options: {selectedOptions}</div>
+          <select>{selectedOptions}</select>
           <div className="overSelect"></div>
         </div>
         <Checkboxes isExpanded={props.isDropdownExpanded}>
