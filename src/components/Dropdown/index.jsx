@@ -4,7 +4,7 @@ import styled from "styled-components";
 import "./Dropdown.css";
 
 const Checkboxes = styled.div`
-  display: ${(props) => (!props.isExpanded ? "block" : "none")};
+  display: ${(props) => (!props.isExpanded ? 'block' : 'none')};
 `;
 
 const Label = styled.label`
@@ -12,7 +12,7 @@ const Label = styled.label`
 `;
 
 export default function Dropdown(props) {
-  const { isExpanded, setIsExpanded } = props;
+  const { isExpanded, setIsExpanded, setCheckboxes } = props;
 
   return (
     <form>
