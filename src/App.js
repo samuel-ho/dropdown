@@ -11,7 +11,7 @@ function App() {
 
   const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
   const [checkboxes, setCheckboxes] = useState(initialCheckboxes);
-  const [selectedOptions, setSelectedOptions] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleCheckboxClick = (e) => {
     const { name } = e.target;
@@ -20,8 +20,18 @@ function App() {
       [name]: !prevCheckboxes[name],
     }));
 
-    var newSelectedOptions = selectedOptions.concat(` ${name}`);
-    setSelectedOptions(newSelectedOptions);
+    const isOptionDisplayed = selectedOptions.includes(name);
+    if (!isOptionDisplayed) {
+      setSelectedOptions((prevSelectedOptions) => [
+        ...prevSelectedOptions,
+        name,
+      ]);
+    } else {
+      const index = selectedOptions.indexOf(name);
+      let newSelectedOptions = [...selectedOptions];
+      newSelectedOptions.splice(index, 1);
+      setSelectedOptions(newSelectedOptions);
+    }
   };
 
   const createCheckbox = (option) => {
